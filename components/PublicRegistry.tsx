@@ -88,7 +88,6 @@ const PublicRegistry = ({ refreshTrigger = 0 }) => {
                                     style={{ animationDelay: `${idx * 50}ms`, animationFillMode: 'both' }}
                                 >
                                     {/* Card Shine Effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out pointer-events-none"></div>
                                     
                                     <div className="p-6 relative z-10 flex flex-col gap-4">
                                         <div className="flex justify-between items-start">
