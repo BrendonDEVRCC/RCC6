@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      base: '/', // CORREÇÃO: '/' é mais seguro para Netlify do que './'
+      base: '/', 
       server: {
         port: 3000,
         host: '0.0.0.0',
@@ -19,6 +19,11 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      build: {
+        outDir: 'dist',
+        assetsDir: 'assets',
+        sourcemap: false,
       }
     };
 });

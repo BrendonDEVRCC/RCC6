@@ -7,7 +7,9 @@ import GridBackground from './components/GridBackground';
 import PublicRegistry from './components/PublicRegistry';
 import LoadingScreen from './components/LoadingScreen';
 import GoldParticles from './components/GoldParticles';
+import NotificationToast from './components/NotificationToast';
 import { useSound } from './hooks/useSound';
+import { NotificationProvider } from './context/NotificationContext';
 
 // --- Global Constants ---
 const RCC_LOGO_URL = "https://i.imgur.com/EgxhzBS.png";
@@ -103,7 +105,7 @@ const CustomCursor = () => {
     );
 };
 
-const App = () => {
+const AppContent = () => {
   const [globalRefreshTrigger, setGlobalRefreshTrigger] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(true);
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -175,6 +177,7 @@ const App = () => {
       <React.Fragment>
         <LoadingScreen onComplete={() => setIsLoading(false)} />
         <CustomCursor />
+        <NotificationToast />
         
         {/* Main Container */}
         <div className={`min-h-screen relative flex flex-col selection:bg-amber-500 selection:text-black overflow-x-hidden transition-all duration-1000 
@@ -542,5 +545,13 @@ const App = () => {
     </ThemeContext.Provider>
   );
 };
+
+const App = () => {
+  return (
+    <NotificationProvider>
+      <AppContent />
+    </NotificationProvider>
+  );
+}
 
 export default App;
