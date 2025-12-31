@@ -274,7 +274,7 @@ const TicketGenerator = ({ onGlobalRefresh }) => {
                     <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-slate-50 dark:bg-[#080808] rounded-full border-l border-amber-300 dark:border-amber-500/30"></div>
 
                     <p className="text-[9px] text-amber-800 dark:text-amber-500 uppercase tracking-widest mb-2">Ticket Nº</p>
-                    <div className="text-4xl font-mono text-amber-900 dark:text-white font-bold tracking-widest group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">
+                    <div className="text-4xl font-mono text-amber-900 dark:text-white font-bold tracking-widest group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors break-words">
                         {verificationCode}
                     </div>
                     <div className="mt-2 text-[8px] text-amber-800/60 dark:text-gray-500 uppercase flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
