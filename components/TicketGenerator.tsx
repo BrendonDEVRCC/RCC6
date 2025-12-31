@@ -4,6 +4,7 @@ import NumberSelector from './NumberSelector';
 import { generateVerificationCode, verifyHabboMission } from '../services/habboService';
 import { submitMissionToSheet, fetchDashboardData } from '../services/sheetService';
 import { useSound } from '../hooks/useSound';
+import { useNotification } from '../context/NotificationContext';
 
 // --- SVG ICONS ---
 const Icons = {
@@ -52,6 +53,7 @@ const TicketGenerator = ({ onGlobalRefresh }) => {
   const [userHistory, setUserHistory] = React.useState([]);
   const [loadingData, setLoadingData] = React.useState(false);
   const { playWhoosh, playChime, playClick } = useSound();
+  const { addNotification } = useNotification();
   
   const [missions, setMissions] = React.useState<Mission[]>([
     { id: 1, title: MISSION_MAP[1], desc: '1h em Função', status: 'PENDING', chosenNumber: '', proofLink: '' },
@@ -141,14 +143,18 @@ const TicketGenerator = ({ onGlobalRefresh }) => {
     try {
       const result = await verifyHabboMission(nickname, verificationCode);
       if (result.success) {
-        playChime();
+        // playChime já é chamado dentro do addNotification('success') se desejado, 
+        // mas aqui estamos mantendo a lógica original + notificação visual
         saveSession(nickname);
+        addNotification('success', 'Acesso Permitido', `Bem-vindo ao salão, ${nickname}.`);
         changeStage('DASHBOARD');
       } else {
         setVerifyError(result.message);
+        addNotification('error', 'Falha na Validação', result.message);
       }
     } catch (e) {
       setVerifyError("Erro inesperado na conexão.");
+      addNotification('error', 'Erro', 'Não foi possível validar. Tente novamente.');
     } finally {
       setVerifying(false);
     }
@@ -160,6 +166,7 @@ const TicketGenerator = ({ onGlobalRefresh }) => {
       setNickname('');
       changeStage('LOGIN');
       setMissions(missions.map(m => ({ ...m, status: 'PENDING', chosenNumber: '', proofLink: '' })));
+      addNotification('info', 'Sessão Encerrada', 'Até logo!');
   };
 
   const handleSubmitMission = async (id) => {
@@ -167,22 +174,35 @@ const TicketGenerator = ({ onGlobalRefresh }) => {
     if (!mission) return;
 
     const num = parseInt(mission.chosenNumber);
-    if (isNaN(num) || mission.chosenNumber === '') { alert("Por favor, selecione um número na tabela."); return; }
-    if (takenNumbers.has(num)) { alert("Este número consta como OCUPADO. Por favor, escolha outro."); refreshData(); return; }
-    if (!mission.proofLink || mission.proofLink.length < 5) { alert("Link de comprovação inválido."); return; }
+    if (isNaN(num) || mission.chosenNumber === '') { 
+      addNotification('warning', 'Atenção', 'Por favor, selecione um número na tabela antes de enviar.');
+      return; 
+    }
+    if (takenNumbers.has(num)) { 
+      addNotification('error', 'Número Ocupado', 'Este número já foi escolhido por outro militar. Por favor, escolha outro.');
+      refreshData(); 
+      return; 
+    }
+    if (!mission.proofLink || mission.proofLink.length < 5) { 
+      addNotification('warning', 'Link Inválido', 'Por favor, insira um link de comprovação válido (Imgur/PrntScrn).');
+      return; 
+    }
     
     playClick();
     setMissions(prev => prev.map(m => m.id === id ? { ...m, status: 'SUBMITTING' } : m));
+    
+    // Notificação de processo iniciado
+    addNotification('info', 'Enviando...', 'Registrando sua missão no sistema.');
+
     const result = await submitMissionToSheet({ nickname: nickname, missionId: id, chosenNumber: num, proofLink: mission.proofLink });
 
     if (result.success) {
-        playChime();
-        alert(`Missão enviada! A tabela será atualizada em instantes.`);
+        addNotification('success', 'Registro Enviado!', 'Sua missão foi enviada para análise. A tabela será atualizada em instantes.');
         setActiveMissionId(null);
         setTimeout(() => refreshData(), 3000);
     } else {
         setMissions(prev => prev.map(m => m.id === id ? { ...m, status: 'PENDING' } : m));
-        alert(result.message);
+        addNotification('error', 'Erro no Envio', result.message);
     }
   };
 
@@ -267,7 +287,10 @@ const TicketGenerator = ({ onGlobalRefresh }) => {
                 {/* The Golden Ticket Code */}
                 <div 
                     className="relative bg-gradient-to-r from-amber-100 to-amber-200 dark:from-amber-900/20 dark:to-black border border-amber-300 dark:border-amber-500/30 p-6 mb-8 cursor-pointer group hover:scale-[1.02] transition-transform"
-                    onClick={() => {navigator.clipboard.writeText(verificationCode); alert('Código copiado!');}}
+                    onClick={() => {
+                        navigator.clipboard.writeText(verificationCode); 
+                        addNotification('info', 'Copiado', 'Código copiado para a área de transferência!');
+                    }}
                 >
                     {/* Corner Cuts */}
                     <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-slate-50 dark:bg-[#080808] rounded-full border-r border-amber-300 dark:border-amber-500/30"></div>
