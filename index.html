@@ -4,16 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>MEGA DA VIRADA DA RCC - 2026</title>
-      <link rel="icon" type="image/png" href="https://i.imgur.com/EgxhzBS.png">
+    
     <!-- Configuração de Ambiente -->
     <script>
       window.process = window.process || { env: {} };
     </script>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-            <script>
   let docTitle = "MEGA DA VIRADA DA RCC - 2026 "; // O texto que vai rolar
   
   function scrollTitle() {
@@ -25,6 +21,9 @@
   // Define a velocidade (200ms = 0.2 segundos por letra)
   setInterval(scrollTitle, 200);
 </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
       tailwind.config = {
         darkMode: 'class', // Habilita troca manual de tema
         theme: {
@@ -100,7 +99,7 @@
       .holographic-hover::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.2), transparent); transform: skewX(-25deg); transition: 0.5s; pointer-events: none; }
       .holographic-hover:hover::before { left: 150%; transition: 0.7s; }
     </style>
-<script type="importmap">
+<script>
 {
   "imports": {
     "react": "https://esm.sh/react@^19.2.3",
@@ -113,7 +112,6 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
 <body class="bg-champagne-100 text-slate-900 dark:bg-black dark:text-gray-100 selection:bg-amber-500 selection:text-white">
     <div id="root"></div>
