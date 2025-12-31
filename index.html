@@ -10,7 +10,7 @@
       window.process = window.process || { env: {} };
     </script>
     
-    <!-- Tailwind CSS (Via CDN para manter a estrutura atual) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -88,7 +88,7 @@
       .holographic-hover::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.2), transparent); transform: skewX(-25deg); transition: 0.5s; pointer-events: none; }
       .holographic-hover:hover::before { left: 150%; transition: 0.7s; }
     </style>
-<script>
+<script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@^19.2.3",
@@ -101,6 +101,7 @@
   }
 }
 </script>
+<link rel="stylesheet" href="/index.css">
 </head>
 <body class="bg-champagne-100 text-slate-900 dark:bg-black dark:text-gray-100 selection:bg-amber-500 selection:text-white">
     <div id="root"></div>
