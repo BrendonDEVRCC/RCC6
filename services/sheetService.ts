@@ -165,7 +165,7 @@ export const submitMissionToSheet = async (data: any) => {
     
     let missionName = "";
     if(data.missionId === 1) missionName = "1 Hora em Função";
-    if(data.missionId === 2) missionName = "Ronda de Recrutamento";
+    if(data.missionId === 2) missionName = "Rondas Ostensivas";
     if(data.missionId === 3) missionName = "Recrutamento";
 
     formData.append('missionId', missionName);
