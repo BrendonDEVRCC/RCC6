@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>MEGA DA VIRADA DA RCC - 2026</title>
-     <link rel="icon" type="image/png" href="https://i.imgur.com/EgxhzBS.png">
+    
     <!-- Configuração de Ambiente -->
     <script>
       window.process = window.process || { env: {} };
@@ -18,9 +18,15 @@
         theme: {
           extend: {
             colors: {
-              amber: { 50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d', 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 900: '#78350f' },
-              champagne: { 100: '#F9F7F2', 200: '#E6E0D0', 300: '#D4C5A5', 500: '#D4AF37' },
-              platinum: { 50: '#fcfcfc', 100: '#f3f3f3', 500: '#e0e0e0', 900: '#1a1a1a' }
+              // Ajustado para tons mais escuros no light mode para conforto visual
+              amber: { 50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d', 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309', 900: '#78350f' },
+              champagne: { 
+                  100: '#E6E4DC', // Cinza pedra (Stone)
+                  200: '#D6D3C7', 
+                  300: '#C4C0B0', 
+                  500: '#D4AF37' 
+              },
+              platinum: { 50: '#f7f7f5', 100: '#ebebe8', 500: '#e0e0e0', 900: '#1a1a1a' }
             },
             fontFamily: {
               editorial: ['Italiana', 'serif'],
@@ -45,18 +51,7 @@
         }
       }
     </script>
-        <script>
-  let docTitle = "MEGA DA VIRADA DA RCC - 2026 "; // O texto que vai rolar
-  
-  function scrollTitle() {
-    // Pega a primeira letra e joga para o final da frase
-    docTitle = docTitle.substring(1) + docTitle.substring(0, 1);
-    document.title = docTitle;
-  }
-
-  // Define a velocidade (200ms = 0.2 segundos por letra)
-  setInterval(scrollTitle, 200);
-</script>
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat:wght@200;300;400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
@@ -81,10 +76,10 @@
       .text-gold-shimmer { background: linear-gradient(to right, #bf953f 20%, #fcf6ba 40%, #fcf6ba 60%, #bf953f 80%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 4s linear infinite; }
       @keyframes shine { to { background-position: 200% center; } }
       
-      /* Scrollbar Light Mode Default */
+      /* Scrollbar Light Mode Default - Darker Track */
       ::-webkit-scrollbar { width: 8px; }
-      ::-webkit-scrollbar-track { background: #f3f3f3; }
-      ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; border: 2px solid #f3f3f3; }
+      ::-webkit-scrollbar-track { background: #e5e5e5; }
+      ::-webkit-scrollbar-thumb { background: #a3a3a3; border-radius: 4px; border: 2px solid #e5e5e5; }
       
       /* Scrollbar Dark Mode Override */
       .dark ::-webkit-scrollbar-track { background: #050505; }
@@ -92,31 +87,30 @@
 
       .glass-panel { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
       
-      /* Light mode glass */
-      html:not(.dark) .glass-panel { background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(0,0,0, 0.05); }
+      /* Light mode glass - More contrast */
+      html:not(.dark) .glass-panel { background: rgba(230, 230, 230, 0.6); border: 1px solid rgba(0,0,0, 0.1); }
 
       .holographic-hover { position: relative; overflow: hidden; }
       .holographic-hover::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.2), transparent); transform: skewX(-25deg); transition: 0.5s; pointer-events: none; }
       .holographic-hover:hover::before { left: 150%; transition: 0.7s; }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "path": "https://esm.sh/path@^0.12.7",
-    "url": "https://esm.sh/url@^0.11.4",
-    "vite": "https://esm.sh/vite@^7.3.0",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@^19.2.3",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "path": "https://esm.sh/path@^0.12.7",
+        "url": "https://esm.sh/url@^0.11.4",
+        "vite": "https://esm.sh/vite@^7.3.0",
+        "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="/index.css">
 </head>
 <body class="bg-champagne-100 text-slate-900 dark:bg-black dark:text-gray-100 selection:bg-amber-500 selection:text-white">
     <div id="root"></div>
-    <!-- Ponto de entrada do Vite -->
     <script type="module" src="/index.tsx"></script>
 </body>
 </html>

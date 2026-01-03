@@ -181,8 +181,8 @@ const AppContent = () => {
         
         {/* Main Container */}
         <div className={`min-h-screen relative flex flex-col selection:bg-amber-500 selection:text-black overflow-x-hidden transition-all duration-1000 
-          bg-[#F5F5F0] dark:bg-[#050505] 
-          ${theme === 'dark' ? 'bg-gradient-radial from-[#0f0800] to-[#000000]' : 'bg-gradient-to-b from-[#ffffff] to-[#F0F0E8]'}
+          bg-[#E8E6DF] dark:bg-[#050505] 
+          ${theme === 'dark' ? 'bg-gradient-radial from-[#0f0800] to-[#000000]' : 'bg-gradient-to-b from-[#E6E4DC] to-[#D6D3C7]'}
           ${isLoading ? 'opacity-0' : 'opacity-100'}`}
         >
           
@@ -195,7 +195,7 @@ const AppContent = () => {
           <nav 
               className={`fixed top-0 left-0 w-full p-4 md:px-12 md:py-6 z-50 flex justify-between items-center transition-all duration-700 ${
                   isScrolled 
-                  ? 'bg-white/90 dark:bg-black/80 backdrop-blur-xl border-b border-gray-200 dark:border-white/5 py-3 md:py-4 shadow-sm' 
+                  ? 'bg-[#EAE8E0]/90 dark:bg-black/80 backdrop-blur-xl border-b border-gray-300 dark:border-white/5 py-3 md:py-4 shadow-sm' 
                   : 'bg-transparent py-4 md:py-8'
               }`}
           >
@@ -203,8 +203,8 @@ const AppContent = () => {
                 <div className="flex items-center gap-3">
                     <img src={RCC_LOGO_URL} className="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-md hover:scale-110 transition-transform" alt="Logo" />
                     <div className="flex flex-col">
-                        <h1 className="text-sm md:text-base font-bold tracking-[0.2em] text-slate-900 dark:text-white uppercase font-ritual leading-none group-hover:text-amber-600 dark:group-hover:text-amber-500 transition-colors whitespace-nowrap">POLÍCIA RCC</h1>
-                        <span className="text-[5px] md:text-[6px] font-bold uppercase tracking-[0.1em] text-amber-600 dark:text-amber-500 whitespace-nowrap">FORMANDO LÍDERES PARA O FUTURO</span>
+                        <h1 className="text-sm md:text-base font-bold tracking-[0.2em] text-slate-800 dark:text-white uppercase font-ritual leading-none group-hover:text-amber-700 dark:group-hover:text-amber-500 transition-colors whitespace-nowrap">POLÍCIA RCC</h1>
+                        <span className="text-[5px] md:text-[6px] font-bold uppercase tracking-[0.1em] text-amber-700 dark:text-amber-500 whitespace-nowrap">FORMANDO LÍDERES PARA O FUTURO</span>
                     </div>
                 </div>
             </div>
@@ -217,10 +217,10 @@ const AppContent = () => {
                           <li key={idx}>
                               <button 
                                 onClick={() => scrollToSection(ids[idx])}
-                                className="text-[10px] uppercase tracking-[0.2em] text-slate-600 dark:text-gray-300 hover:text-amber-700 dark:hover:text-amber-400 transition-all relative group py-2 font-bold interactive-hover hover:scale-105"
+                                className="text-[10px] uppercase tracking-[0.2em] text-slate-700 dark:text-gray-300 hover:text-amber-800 dark:hover:text-amber-400 transition-all relative group py-2 font-bold interactive-hover hover:scale-105"
                               >
                                   {item}
-                                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-[1px] bg-amber-600 dark:bg-amber-500 opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
+                                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-[1px] bg-amber-700 dark:bg-amber-500 opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
                               </button>
                           </li>
                       )
@@ -230,7 +230,7 @@ const AppContent = () => {
               {/* Theme Toggle */}
               <button 
                 onClick={toggleTheme}
-                className="p-2 rounded-full border border-slate-300 dark:border-white/10 hover:border-amber-500 text-slate-700 dark:text-gray-300 hover:text-amber-600 dark:hover:text-amber-500 transition-all interactive-hover bg-white/50 dark:bg-black/30 backdrop-blur-sm shadow-sm"
+                className="p-2 rounded-full border border-slate-400 dark:border-white/10 hover:border-amber-600 dark:hover:border-amber-500 text-slate-800 dark:text-gray-300 hover:text-amber-700 dark:hover:text-amber-500 transition-all interactive-hover bg-white/40 dark:bg-black/30 backdrop-blur-sm shadow-sm"
                 aria-label="Toggle Theme"
               >
                 {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
@@ -257,7 +257,7 @@ const AppContent = () => {
                   style={{
                       background: theme === 'dark' 
                         ? 'radial-gradient(circle, rgba(212,175,55,0.1) 0%, rgba(0,0,0,0) 60%)'
-                        : 'radial-gradient(circle, rgba(212,175,55,0.3) 0%, rgba(255,255,255,0) 60%)',
+                        : 'radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(200,190,170,0) 60%)',
                       transform: `translate3d(-50%, -50%, 0) translate3d(${(mousePos.x - 50) * 0.05}px, ${(mousePos.y - 50) * 0.05}px, 0)` // Reduced movement for performance
                   }}
                 ></div>
@@ -267,8 +267,8 @@ const AppContent = () => {
                     
                     {/* Top Decorative Line */}
                     <div className="animate-reveal flex flex-col items-center mb-10 opacity-70">
-                        <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-amber-600 dark:via-amber-400 to-transparent"></div>
-                        <span className="mt-4 text-[10px] md:text-xs font-bold tracking-[0.5em] text-slate-500 dark:text-amber-500/60 uppercase">
+                        <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-amber-700 dark:via-amber-400 to-transparent"></div>
+                        <span className="mt-4 text-[10px] md:text-xs font-bold tracking-[0.5em] text-slate-600 dark:text-amber-500/60 uppercase">
                             Edição Especial
                         </span>
                     </div>
@@ -278,9 +278,9 @@ const AppContent = () => {
                         
                         {/* Huge Background Text "2026" */}
                         <h1 
-                            className="text-[25vw] leading-none font-editorial font-normal text-slate-200 dark:text-[#111] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none z-0"
+                            className="text-[25vw] leading-none font-editorial font-normal text-slate-300 dark:text-[#111] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none z-0"
                             style={{ 
-                                textShadow: theme === 'dark' ? '0 0 50px rgba(0,0,0,0.8)' : '0 0 20px rgba(255,255,255,0.8)',
+                                textShadow: theme === 'dark' ? '0 0 50px rgba(0,0,0,0.8)' : '0 0 20px rgba(255,255,255,0.5)',
                             }}
                         >
                             2026
@@ -288,18 +288,18 @@ const AppContent = () => {
 
                         {/* Foreground Title "MEGA DA VIRADA" */}
                         <div className="relative z-10 group cursor-default">
-                             <h2 className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-editorial text-transparent bg-clip-text bg-gradient-to-b from-slate-800 to-slate-600 dark:from-white dark:to-gray-400 drop-shadow-2xl animate-reveal tracking-tight hover:scale-[1.02] transition-transform duration-700">
+                             <h2 className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-editorial text-transparent bg-clip-text bg-gradient-to-b from-slate-900 to-slate-700 dark:from-white dark:to-gray-400 drop-shadow-2xl animate-reveal tracking-tight hover:scale-[1.02] transition-transform duration-700">
                                  MEGA DA
-                                 <span className="block italic font-light text-amber-600 dark:text-amber-400 mt-[-0.2em]">Virada</span>
+                                 <span className="block italic font-light text-amber-700 dark:text-amber-400 mt-[-0.2em]">Virada</span>
                              </h2>
                         </div>
 
                         {/* Floating Badge (Hidden on small mobile) */}
                         <div className="absolute top-0 right-10 md:right-20 animate-float hidden lg:block">
-                            <div className="w-24 h-24 rounded-full border border-amber-500/30 flex items-center justify-center backdrop-blur-md bg-white/10 dark:bg-black/20 hover:bg-amber-500/10 transition-colors">
+                            <div className="w-24 h-24 rounded-full border border-amber-600/30 flex items-center justify-center backdrop-blur-md bg-white/20 dark:bg-black/20 hover:bg-amber-500/10 transition-colors shadow-lg">
                                 <div className="text-center">
-                                    <span className="block text-2xl font-editorial text-amber-600 dark:text-amber-400">18</span>
-                                    <span className="block text-[8px] uppercase tracking-widest text-slate-600 dark:text-white">HCs</span>
+                                    <span className="block text-2xl font-editorial text-amber-700 dark:text-amber-400">18</span>
+                                    <span className="block text-[8px] uppercase tracking-widest text-slate-700 dark:text-white">HCs</span>
                                 </div>
                             </div>
                         </div>
@@ -307,18 +307,18 @@ const AppContent = () => {
 
                     {/* Footer / Call to Action */}
                     <div className="mt-20 flex flex-col items-center animate-reveal" style={{ animationDelay: '0.4s' }}>
-                        <p className="text-sm md:text-lg text-slate-600 dark:text-gray-400 font-light tracking-wide max-w-xl mb-10 leading-relaxed">
+                        <p className="text-sm md:text-lg text-slate-700 dark:text-gray-400 font-light tracking-wide max-w-xl mb-10 leading-relaxed">
                             O grande baile da fortuna aguarda por você. <br/>
-                            <span className="text-amber-700 dark:text-amber-300">Faça sua história em 2026.</span>
+                            <span className="text-amber-800 dark:text-amber-300 font-medium">Faça sua história em 2026.</span>
                         </p>
 
                         <button 
                             onClick={() => scrollToSection('missions')}
                             className="group relative px-12 py-5 bg-transparent overflow-hidden transition-all duration-300 hover:scale-105"
                         >
-                            <div className="absolute inset-0 border-y border-slate-300 dark:border-white/20 group-hover:border-amber-500/50 transition-colors w-full h-full scale-x-100 group-hover:scale-x-90 duration-500"></div>
-                            <div className="absolute inset-0 bg-amber-500/0 group-hover:bg-amber-500/5 transition-colors"></div>
-                            <span className="relative flex items-center gap-3 text-xs font-bold uppercase tracking-[0.4em] text-slate-900 dark:text-white group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">
+                            <div className="absolute inset-0 border-y border-slate-400 dark:border-white/20 group-hover:border-amber-600/50 transition-colors w-full h-full scale-x-100 group-hover:scale-x-90 duration-500"></div>
+                            <div className="absolute inset-0 bg-amber-500/0 group-hover:bg-amber-600/10 transition-colors"></div>
+                            <span className="relative flex items-center gap-3 text-xs font-bold uppercase tracking-[0.4em] text-slate-900 dark:text-white group-hover:text-amber-800 dark:group-hover:text-amber-400 transition-colors">
                                 Resgatar Ticket
                             </span>
                         </button>
@@ -327,16 +327,16 @@ const AppContent = () => {
                 </div>
 
                 {/* Bottom Fade */}
-                <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#F5F5F0] dark:from-[#050505] to-transparent z-20 pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#E8E6DF] dark:from-[#050505] to-transparent z-20 pointer-events-none"></div>
             </section>
 
             {/* Section 2: Timeline */}
-            <section id="countdown" className="relative border-t border-slate-300 dark:border-white/10 bg-white/60 dark:bg-black/40 backdrop-blur-md z-20">
+            <section id="countdown" className="relative border-t border-slate-300 dark:border-white/10 bg-[#EAE8E0]/60 dark:bg-black/40 backdrop-blur-md z-20">
                 <Countdown />
             </section>
 
             {/* Section 3: GOLD SECTION (Missions) */}
-            <section id="missions" className="min-h-screen flex items-center justify-center relative overflow-hidden py-20 bg-[#ECECE6] dark:bg-transparent transition-colors">
+            <section id="missions" className="min-h-screen flex items-center justify-center relative overflow-hidden py-20 bg-[#DFDDD5] dark:bg-transparent transition-colors">
                  {/* Only show Nebula in Dark Mode */}
                  <div className="hidden dark:block">
                     <NebulaBackground />
@@ -349,7 +349,7 @@ const AppContent = () => {
             </section>
 
             {/* Section 4: GRID SECTION (Registry) */}
-            <div id="registry" className="relative min-h-screen bg-[#F9F9F7] dark:bg-transparent transition-colors">
+            <div id="registry" className="relative min-h-screen bg-[#E6E4DC] dark:bg-transparent transition-colors">
               <GridBackground theme={theme} />
               <div className="relative z-10">
                   <PublicRegistry refreshTrigger={globalRefreshTrigger} />
@@ -357,25 +357,25 @@ const AppContent = () => {
             </div>
 
             {/* Section 5: Rules & Missions */}
-            <section id="rules" className="py-20 md:py-32 px-6 md:px-20 bg-[#F0F0E8] dark:bg-[#080808] text-slate-900 dark:text-white relative overflow-hidden border-t border-slate-300 dark:border-white/10">
+            <section id="rules" className="py-20 md:py-32 px-6 md:px-20 bg-[#E0DED6] dark:bg-[#080808] text-slate-900 dark:text-white relative overflow-hidden border-t border-slate-300 dark:border-white/10">
                 {/* Background: Blueprint Grid */}
                 <div className="absolute inset-0 pointer-events-none opacity-5 dark:opacity-20">
                     <div className="absolute inset-0" 
                          style={{
                              backgroundImage: theme === 'dark' 
                                 ? 'linear-gradient(rgba(212, 175, 55, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(212, 175, 55, 0.1) 1px, transparent 1px)'
-                                : 'linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)',
+                                : 'linear-gradient(rgba(0, 0, 0, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.15) 1px, transparent 1px)',
                              backgroundSize: '40px 40px'
                          }}>
                     </div>
                 </div>
 
                 <div className="max-w-7xl mx-auto relative z-10">
-                    <div className="flex flex-col md:flex-row justify-between items-end mb-10 md:mb-20 pb-8 border-b border-slate-300 dark:border-white/10">
+                    <div className="flex flex-col md:flex-row justify-between items-end mb-10 md:mb-20 pb-8 border-b border-slate-400 dark:border-white/10">
                         <div>
                             <div className="flex items-center gap-2 mb-2">
                                 <span className="w-2 h-2 rounded-full bg-amber-600 dark:bg-amber-500 animate-pulse"></span>
-                                <span className="text-[10px] uppercase tracking-[0.3em] text-amber-700 dark:text-amber-500">Documento Oficial</span>
+                                <span className="text-[10px] uppercase tracking-[0.3em] text-amber-800 dark:text-amber-500 font-bold">Documento Oficial</span>
                             </div>
                             <h3 className="text-3xl md:text-5xl font-editorial text-slate-900 dark:text-white">Condições & Premiação</h3>
                         </div>
@@ -389,22 +389,22 @@ const AppContent = () => {
                         {/* Left Column: Timeline */}
                         <div className="lg:col-span-4 relative">
                             <div className="lg:sticky lg:top-32">
-                                <h4 className="text-sm font-bold uppercase tracking-[0.2em] mb-10 text-slate-500 dark:text-white/50 flex items-center gap-3">
-                                    <span className="w-8 h-[1px] bg-slate-400 dark:bg-white/20"></span> Cronograma
+                                <h4 className="text-sm font-bold uppercase tracking-[0.2em] mb-10 text-slate-600 dark:text-white/50 flex items-center gap-3">
+                                    <span className="w-8 h-[1px] bg-slate-500 dark:bg-white/20"></span> Cronograma
                                 </h4>
                                 
-                                <div className="relative pl-8 border-l border-slate-300 dark:border-white/10 space-y-16">
+                                <div className="relative pl-8 border-l border-slate-400 dark:border-white/10 space-y-16">
                                     {/* Event 1 */}
                                     <div className="relative group interactive-hover">
                                         <div className="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-300 dark:bg-black border-2 border-slate-500 dark:border-white/20 group-hover:border-amber-500 group-hover:bg-amber-900 transition-all z-10"></div>
-                                        <span className="text-[10px] text-amber-700 dark:text-amber-500 uppercase tracking-widest block mb-1">Abertura</span>
+                                        <span className="text-[10px] text-amber-800 dark:text-amber-500 uppercase tracking-widest block mb-1">Abertura</span>
                                         <p className="text-2xl font-editorial text-slate-900 dark:text-white mb-1">31 Dezembro</p>
                                     </div>
 
                                     {/* Event 2 */}
                                     <div className="relative group interactive-hover">
                                         <div className="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-300 dark:bg-black border-2 border-slate-500 dark:border-white/20 group-hover:border-amber-500 group-hover:bg-amber-900 transition-all z-10"></div>
-                                        <span className="text-[10px] text-slate-600 dark:text-gray-500 uppercase tracking-widest block mb-1">Fechamento</span>
+                                        <span className="text-[10px] text-slate-700 dark:text-gray-500 uppercase tracking-widest block mb-1">Fechamento</span>
                                         <p className="text-2xl font-editorial text-slate-900 dark:text-white mb-1">10 Janeiro</p>
                                     </div>
 
@@ -413,7 +413,7 @@ const AppContent = () => {
                                         <div className="absolute -left-[39px] top-0 w-5 h-5 rounded-full bg-amber-500 shadow-[0_0_20px_rgba(212,175,55,0.6)] z-10"></div>
                                         <div className="absolute -left-[39px] top-0 w-5 h-5 rounded-full bg-amber-500 animate-ping opacity-20"></div>
 
-                                        <span className="text-[10px] text-amber-700 dark:text-amber-400 font-bold uppercase tracking-widest block mb-1">O Grande Sorteio</span>
+                                        <span className="text-[10px] text-amber-800 dark:text-amber-400 font-bold uppercase tracking-widest block mb-1">O Grande Sorteio</span>
                                         <p className="text-3xl font-editorial text-slate-900 dark:text-white mb-1 text-gold-shimmer">11 Janeiro</p>
                                         <p className="text-xs text-slate-600 dark:text-gray-400 leading-relaxed">Transmissão ao vivo.</p>
                                     </div>
@@ -423,56 +423,56 @@ const AppContent = () => {
 
                         {/* Right Column: Mission Briefing Cards */}
                         <div className="lg:col-span-8 space-y-6">
-                             <h4 className="text-sm font-bold uppercase tracking-[0.2em] mb-6 text-slate-500 dark:text-white/50 flex items-center gap-3">
-                                 <span className="w-8 h-[1px] bg-slate-400 dark:bg-white/20"></span> Diretrizes da Missão
+                             <h4 className="text-sm font-bold uppercase tracking-[0.2em] mb-6 text-slate-600 dark:text-white/50 flex items-center gap-3">
+                                 <span className="w-8 h-[1px] bg-slate-500 dark:bg-white/20"></span> Diretrizes da Missão
                              </h4>
 
                              <div className="grid md:grid-cols-2 gap-6">
                                  {/* Card 1 */}
-                                 <div className="bg-white dark:bg-[#111] p-8 border border-slate-300 dark:border-white/10 transition-all duration-500 hover:border-amber-500/30 group shadow-sm hover:shadow-lg rounded-sm hover:-translate-y-1">
+                                 <div className="bg-white/80 dark:bg-[#111] p-8 border border-slate-300 dark:border-white/10 transition-all duration-500 hover:border-amber-500/30 group shadow-sm hover:shadow-lg rounded-sm hover:-translate-y-1">
                                      <div className="flex justify-between items-start mb-6">
-                                         <span className="text-[10px] border border-slate-200 dark:border-white/10 px-2 py-1 uppercase tracking-widest text-slate-500 dark:text-gray-400 group-hover:text-amber-600 dark:group-hover:text-white group-hover:border-amber-500/30 transition-colors">Fácil</span>
+                                         <span className="text-[10px] border border-slate-300 dark:border-white/10 px-2 py-1 uppercase tracking-widest text-slate-600 dark:text-gray-400 group-hover:text-amber-700 dark:group-hover:text-white group-hover:border-amber-500/30 transition-colors">Fácil</span>
                                      </div>
                                      <h3 className="text-xl text-slate-900 dark:text-white font-light mb-2">01 hora em função</h3>
                                      <div className="w-full h-[1px] bg-slate-200 dark:bg-white/10 mb-4 group-hover:bg-amber-500/50 transition-colors"></div>
-                                     <p className="text-slate-600 dark:text-gray-400 text-sm leading-relaxed mb-6">
+                                     <p className="text-slate-700 dark:text-gray-400 text-sm leading-relaxed mb-6">
                                          Necessário completar <strong className="text-slate-900 dark:text-white">01 hora</strong> em função (Exige rotação no batalhão).
                                      </p>
-                                     <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-amber-600 dark:text-amber-500/70">
+                                     <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-amber-700 dark:text-amber-500/70">
                                          <span className="w-1.5 h-1.5 bg-amber-500 rounded-full shadow-[0_0_5px_#f59e0b]"></span> Recompensa: 1 Ticket
                                      </div>
                                  </div>
 
                                  {/* Card 2 */}
-                                 <div className="bg-white dark:bg-[#111] p-8 border border-slate-300 dark:border-white/10 transition-all duration-500 hover:border-amber-500/30 group shadow-sm hover:shadow-lg rounded-sm hover:-translate-y-1">
+                                 <div className="bg-white/80 dark:bg-[#111] p-8 border border-slate-300 dark:border-white/10 transition-all duration-500 hover:border-amber-500/30 group shadow-sm hover:shadow-lg rounded-sm hover:-translate-y-1">
                                      <div className="flex justify-between items-start mb-6">
-                                         <span className="text-[10px] border border-slate-200 dark:border-white/10 px-2 py-1 uppercase tracking-widest text-slate-500 dark:text-gray-400 group-hover:text-amber-600 dark:group-hover:text-white group-hover:border-amber-500/30 transition-colors">Fácil</span>
+                                         <span className="text-[10px] border border-slate-300 dark:border-white/10 px-2 py-1 uppercase tracking-widest text-slate-600 dark:text-gray-400 group-hover:text-amber-700 dark:group-hover:text-white group-hover:border-amber-500/30 transition-colors">Fácil</span>
                                      </div>
                                      <h3 className="text-xl text-slate-900 dark:text-white font-light mb-2">Realizar 3 Rondas</h3>
                                      <div className="w-full h-[1px] bg-slate-200 dark:bg-white/10 mb-4 group-hover:bg-amber-500/50 transition-colors"></div>
-                                     <p className="text-slate-600 dark:text-gray-400 text-sm leading-relaxed mb-6">
+                                     <p className="text-slate-700 dark:text-gray-400 text-sm leading-relaxed mb-6">
                                          Realizar <strong className="text-slate-900 dark:text-white">03 rondas</strong> (Divulgação/Recrutamento).
                                      </p>
-                                     <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-amber-600 dark:text-amber-500/70">
+                                     <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-amber-700 dark:text-amber-500/70">
                                          <span className="w-1.5 h-1.5 bg-amber-500 rounded-full shadow-[0_0_5px_#f59e0b]"></span> Recompensa: 1 Ticket
                                      </div>
                                  </div>
 
                                  {/* Card 3 - Featured */}
-                                 <div className="md:col-span-2 bg-white dark:bg-[#111] relative p-8 border border-slate-300 dark:border-white/10 hover:border-amber-500/50 transition-all duration-500 group overflow-hidden shadow-sm hover:shadow-xl rounded-sm hover:-translate-y-1">
+                                 <div className="md:col-span-2 bg-white/80 dark:bg-[#111] relative p-8 border border-slate-300 dark:border-white/10 hover:border-amber-500/50 transition-all duration-500 group overflow-hidden shadow-sm hover:shadow-xl rounded-sm hover:-translate-y-1">
                                      {/* Animated Gradient Background */}
                                      <div className="absolute inset-0 bg-gradient-to-r from-amber-500/0 via-amber-500/5 to-amber-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
 
                                      <div className="flex justify-between items-start mb-6 relative z-10">
-                                         <span className="text-[10px] bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-500 px-3 py-1 uppercase tracking-widest font-bold shadow-[0_0_10px_rgba(245,158,11,0.2)]">Intermediária</span>
+                                         <span className="text-[10px] bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-500 px-3 py-1 uppercase tracking-widest font-bold shadow-[0_0_10px_rgba(245,158,11,0.2)]">Intermediária</span>
                                      </div>
                                      <div className="grid md:grid-cols-2 gap-8 items-center relative z-10">
                                          <div>
                                              <h3 className="text-2xl text-slate-900 dark:text-white mb-3">Recrutamento</h3>
-                                             <p className="text-slate-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+                                             <p className="text-slate-700 dark:text-gray-400 text-sm leading-relaxed mb-4">
                                                  Recrutar <strong className="text-slate-900 dark:text-white">01 novo policial</strong> à RCC com perfil ativo no System.
                                              </p>
-                                             <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-amber-600 dark:text-amber-500 font-bold">
+                                             <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-amber-700 dark:text-amber-500 font-bold">
                                                  <span className="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse"></span> Recompensa: 1 Ticket
                                              </div>
                                          </div>
@@ -489,7 +489,7 @@ const AppContent = () => {
 
           </main>
 
-          <footer className="relative z-10 bg-[#F5F5F0] dark:bg-black border-t border-slate-200 dark:border-white/5 transition-colors duration-500">
+          <footer className="relative z-10 bg-[#E0DED6] dark:bg-black border-t border-slate-300 dark:border-white/5 transition-colors duration-500">
             {/* Top Gradient Separator */}
             <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-amber-500/30 to-transparent"></div>
             
@@ -502,7 +502,7 @@ const AppContent = () => {
                         <img src={RCC_LOGO_URL} className="w-16 h-16 object-contain relative z-10 drop-shadow-md grayscale group-hover:grayscale-0 transition-all duration-500" alt="Logo Footer" />
                     </div>
                     <h2 className="text-xl font-bold tracking-[0.3em] text-slate-900 dark:text-white uppercase font-ritual leading-none mb-2">POLÍCIA RCC</h2>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-gray-500">HIERARQUIA • ORGANIZAÇÃO • AGILIDADE • HABILIDADE</p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-slate-600 dark:text-gray-500">HIERARQUIA • ORGANIZAÇÃO • AGILIDADE • HABILIDADE</p>
                 </div>
 
                 {/* Social Media Links */}
@@ -518,7 +518,7 @@ const AppContent = () => {
                             href={social.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative flex items-center justify-center p-4 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-gray-400 hover:text-white hover:border-amber-500 transition-all duration-300 interactive-hover hover:-translate-y-1"
+                            className="group relative flex items-center justify-center p-4 rounded-full bg-white dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-gray-400 hover:text-white hover:border-amber-500 transition-all duration-300 interactive-hover hover:-translate-y-1"
                             aria-label={social.name}
                         >
                             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -530,11 +530,11 @@ const AppContent = () => {
                 </div>
 
                 {/* Bottom Legal & Credits */}
-                <div className="w-full border-t border-slate-200 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-slate-400 dark:text-gray-600 text-center">
+                <div className="w-full border-t border-slate-300 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-slate-500 dark:text-gray-600 text-center">
                     <p>&copy; 2026 Revolução Contra o Crime. All rights reserved.</p>
                     <div className="flex items-center gap-4 justify-center">
                         <span className="flex items-center gap-2">
-                           Dev <span className="text-amber-600 dark:text-amber-500 font-bold">.Brendon</span>
+                           Dev <span className="text-amber-700 dark:text-amber-500 font-bold">.Brendon</span>
                         </span>
                     </div>
                 </div>

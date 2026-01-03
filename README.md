@@ -1,17 +1,20 @@
-### 1. Instale o Node.js
-Se ainda não tiver, baixe e instale a versão "LTS" do [Node.js](https://nodejs.org/).
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-### 2. Prepare o Projeto
-Abra o terminal (Prompt de Comando ou PowerShell) na pasta onde você extraiu os arquivos.
+# Run and deploy your AI Studio app
 
-1. Instale as dependências:
-   ```bash
-   npm install
-   ```
+This contains everything you need to run your app locally.
 
-2. Inicie o site:
-   ```bash
-   npm run dev
-   ```
+View your app in AI Studio: https://ai.studio/apps/drive/1ciCWNaCNqJMvup5Uibs7739XgHnTmULl
 
-3. O terminal mostrará um link (ex: `http://localhost:5173`). Clique nele ou copie e cole no seu navegador.
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
