@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 const GoldParticles: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null); // Wrap in a div to observe visibility
   const mouseRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -13,8 +14,8 @@ const GoldParticles: React.FC = () => {
     let width = canvas.offsetWidth;
     let height = canvas.offsetHeight;
     
-    // Performance: Limitar DPR em telas retina para evitar lag
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    // Low DPR for this effect is acceptable and much faster
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.2);
     
     const handleResize = () => {
       if (canvas.parentElement) {
@@ -32,8 +33,8 @@ const GoldParticles: React.FC = () => {
     window.addEventListener('resize', handleResize);
 
     const particles: Particle[] = [];
-    // Ajustar quantidade baseada na largura da tela para mobile
-    const PARTICLE_COUNT = width < 768 ? 40 : 100;
+    // Significantly reduced particle count
+    const PARTICLE_COUNT = width < 768 ? 20 : 50;
 
     class Particle {
       x: number;
@@ -47,43 +48,45 @@ const GoldParticles: React.FC = () => {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 2.5 + 0.5;
-        this.speedY = Math.random() * 0.8 + 0.2; // Subindo suavemente
+        this.size = Math.random() * 2.0 + 0.5;
+        this.speedY = Math.random() * 0.5 + 0.1; 
         
-        // Paleta solicitada: #FFD700, #DAA520, #FFFACD
         const colors = ['#FFD700', '#DAA520', '#FFFACD', '#FCE6C9'];
         this.color = colors[Math.floor(Math.random() * colors.length)];
-        this.baseAlpha = Math.random() * 0.6 + 0.1;
+        this.baseAlpha = Math.random() * 0.5 + 0.1;
         this.alpha = this.baseAlpha;
       }
 
       update() {
-        // Movimento vertical (subindo)
         this.y -= this.speedY;
 
-        // Interação com o Mouse (Repulsão suave)
+        // Interaction Check - Simplified
         const dx = this.x - mouseRef.current.x;
         const dy = this.y - mouseRef.current.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const forceDirectionX = dx / distance;
-        const forceDirectionY = dy / distance;
-        const maxDistance = 150;
-        const force = (maxDistance - distance) / maxDistance;
-
-        if (distance < maxDistance) {
-            this.x += forceDirectionX * force * 2;
-            this.y += forceDirectionY * force * 2;
-            this.alpha = Math.min(1, this.baseAlpha + 0.4); // Brilha mais perto do mouse
+        
+        // Bounding box check before sqrt
+        if (Math.abs(dx) < 150 && Math.abs(dy) < 150) {
+            const distanceSq = dx * dx + dy * dy;
+            const maxDistSq = 22500; // 150*150
+            
+            if (distanceSq < maxDistSq) {
+                const distance = Math.sqrt(distanceSq);
+                const force = (150 - distance) / 150;
+                
+                this.x += (dx / distance) * force * 2;
+                this.y += (dy / distance) * force * 2;
+                this.alpha = Math.min(1, this.baseAlpha + 0.4);
+            } else {
+                this.alpha = this.baseAlpha;
+            }
         } else {
             this.alpha = this.baseAlpha;
         }
 
-        // Resetar se sair da tela (efeito loop infinito)
         if (this.y < -10) {
             this.y = height + 10;
             this.x = Math.random() * width;
         }
-        // Bordas laterais
         if (this.x > width) this.x = 0;
         if (this.x < 0) this.x = width;
       }
@@ -96,11 +99,7 @@ const GoldParticles: React.FC = () => {
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
         
-        // Simular brilho sem filtro pesado
-        ctx.globalAlpha = this.alpha * 0.3;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
-        ctx.fill();
+        // Remove simulated glow draw call for performance
       }
     }
 
@@ -109,6 +108,8 @@ const GoldParticles: React.FC = () => {
     }
 
     let animationId: number;
+    let isAnimating = false;
+
     const animate = () => {
       if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
@@ -122,7 +123,7 @@ const GoldParticles: React.FC = () => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-        // Ajustar coordenadas do mouse relativas ao canvas/hero section
+        if (!isAnimating) return; // Don't calculate if not visible
         const rect = canvas.getBoundingClientRect();
         mouseRef.current = { 
             x: e.clientX - rect.left, 
@@ -130,23 +131,39 @@ const GoldParticles: React.FC = () => {
         };
     };
     
-    // Adicionar listener no window ou container pai para melhor UX
     document.addEventListener('mousemove', handleMouseMove);
-    animate();
+
+    // Performance: Intersection Observer to stop animation when not visible
+    const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+            if (!isAnimating) {
+                isAnimating = true;
+                animate();
+            }
+        } else {
+            isAnimating = false;
+            cancelAnimationFrame(animationId);
+        }
+    });
+    
+    // We observe the canvas wrapper
+    if (containerRef.current) observer.observe(containerRef.current);
 
     return () => {
         window.removeEventListener('resize', handleResize);
         document.removeEventListener('mousemove', handleMouseMove);
         cancelAnimationFrame(animationId);
+        observer.disconnect();
     };
   }, []);
 
   return (
-    <canvas 
-      ref={canvasRef} 
-      className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen"
-      style={{ zIndex: 1 }} 
-    />
+    <div ref={containerRef} className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
+        <canvas 
+          ref={canvasRef} 
+          className="w-full h-full mix-blend-screen"
+        />
+    </div>
   );
 };
 

@@ -18,7 +18,7 @@ const NebulaBackground = () => {
       if(canvas.parentElement) {
           width = canvas.parentElement.offsetWidth;
           height = canvas.parentElement.offsetHeight;
-          const dpr = Math.min(window.devicePixelRatio || 1, 1); // Força 1.0 DPR para performance máxima na Nebula
+          const dpr = 1; // Strict 1.0 DPR for performance
           canvas.width = width * dpr;
           canvas.height = height * dpr;
           ctx.scale(dpr, dpr);
@@ -35,21 +35,20 @@ const NebulaBackground = () => {
     window.addEventListener('resize', onResize);
 
     const animate = () => {
-      time += 0.001; // Velocidade reduzida
+      time += 0.001; 
       
-      // Fundo sólido
       ctx.fillStyle = '#050200';
       ctx.fillRect(0, 0, width, height);
 
       ctx.globalCompositeOperation = 'lighter';
       
-      // Reduzido para 2 camadas apenas
       for (let i = 1; i <= 2; i++) {
         ctx.beginPath();
         const scale = i * 60;
         
-        // Passo de 60px para reduzir vértices drasticamente
-        for (let x = 0; x <= width + 60; x += 60) {
+        // Increased step to 100 for fewer draw calls
+        const step = 100;
+        for (let x = 0; x <= width + step; x += step) {
            const y = height / 2 + 
                      Math.sin(x / 400 + time * i) * scale;
            
@@ -60,7 +59,6 @@ const NebulaBackground = () => {
         ctx.strokeStyle = i === 1 ? `rgba(212, 175, 55, 0.08)` : `rgba(184, 134, 11, 0.05)`;
         ctx.lineWidth = 80;
         ctx.lineCap = 'round';
-        // Blur via shadow é caro, usando transparência direta
         ctx.stroke();
       }
 
@@ -68,11 +66,21 @@ const NebulaBackground = () => {
       animationId = requestAnimationFrame(animate);
     };
 
-    animate();
+    // Intersection Observer
+    const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+            animate();
+        } else {
+            cancelAnimationFrame(animationId);
+        }
+    });
+
+    if (canvas) observer.observe(canvas);
 
     return () => {
         window.removeEventListener('resize', onResize);
         cancelAnimationFrame(animationId);
+        observer.disconnect();
     };
   }, []);
 
